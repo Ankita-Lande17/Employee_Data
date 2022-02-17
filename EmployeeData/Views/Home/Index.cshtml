@@ -1,0 +1,151 @@
+﻿@model Registration
+@{
+    ViewData["Title"]= "Home Page";
+}
+
+
+<div class="text-center">
+     <h2>@ViewData["Title"]</h2>
+    <p><a href="https://docs.microsoft.com/aspnet/core">@ViewData["Text"]</a>.</p>
+   @* <br />
+    @TempData["TempModel"]
+    <br/> 
+
+    @TempData["TempKeepModel"]
+    @{
+        TempData.Keep("TempKeepModel");
+        string str = TempData.Peek("TempPeekModel").ToString();
+    }
+
+    <br />
+    @str
+    
+   @ @<ul>
+        @foreach (var student in ViewData["Student"] as List<string>)
+            {
+                <li>@student</li>
+        }
+</ul>
+
+<br />
+<br/>
+ <ul>
+        @foreach (var student in ViewBag.StudentData)
+            {
+                <li>@student</li>
+        }
+</ul>*@
+@*<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>E</p>
+<p>F</p>
+<p>G</p>
+<p>H</p>*@
+</div>
+
+
+@using (Html.BeginForm("Registration", "Home", FormMethod.Post, new {id="formRegistration" }))  
+{  
+
+     <script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+      </script>
+        <script src=
+"https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js">
+      </script>
+        <script src=
+"https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js">
+      </script>
+
+    @Html.ValidationSummary(false)
+    @Html.AntiForgeryToken()
+<div class="form-group">  
+   <label for="First Name" class="col-md-3 control-label">First Name</label>  
+    <div class="col-md-9">  
+
+    
+     @* <p>       
+          <label for="firstname">First Name</label>
+  
+                <input name="name" 
+                       type="text" 
+                       data-val-required="First Name is required."
+                       data-val="true" 
+                       style="margin-left: 30px;" /><br />
+                <span data-valmsg-for="name" 
+                      data-valmsg-replace="true" 
+                      style="margin-left: 75px; color: red;" />
+            </p>
+*@
+            @Html.TextBox("First Name", null, new { @class = "form-control" , data_val="true", data_val_required="Name is blank"})
+            <span data-valmsg-for="First Name" 
+                      data-valmsg-replace="true" 
+                      style="margin-left: 75px; color: red;" />
+
+            
+
+         
+   @* @Html.TextBoxFor(x => x.FirstName, "", new { @class = "form- control", placeholder = "First Name" })  *@
+   @* @Html.ValidationMessageFor(x => x.FirstName, "Please enter First Name", new { @class = "text- danger", style = "display:none" })  *@
+   </div>  
+</div>  
+<br />  
+<div class="form-group">  
+   <label for="Lastname" class="col-md-3 control-label">Last Name</label>  
+<div class="col-md-9">  
+   @Html.TextBoxFor(x => x.LastName, "", new { @class = "form-control", placeholder = "Last Name" })  
+   @Html.ValidationMessageFor(x => x.LastName, "Please enter Last Name", new { @class = "text-   danger", style  = "display:none" })  
+</div>  
+</div>  
+<br />  
+<div class="form-group">  
+   <label for="lastname" class="col-md-3 control-label">Email</label>  
+<div class="col-md-9">  
+   @Html.TextBoxFor(x => x.Email, "", new { @class = "form-control", placeholder = "Email" })  
+   @Html.ValidationMessageFor(x => x.Email, "Please enter Email", new { @class = "text-   danger", style = "disp   lay:none" })  
+   </div>  
+</div>  
+<br />  
+<div class="form-group">  
+   <label for="password" class="col-md-3 control-label">Password</label>  
+<div class="col-md-9">  
+   @Html.PasswordFor(x => x.Password, new { @class = "form-   control", placeholder = "Password", onblur = "Pass   wordStrength();" })  
+   @Html.ValidationMessageFor(x => x.Password, "Please enter Password", new { @class = "text-   danger", style =    "display:none" })  
+</div>  
+</div>  
+<br />  
+<div class="form-group">  
+   <label for="password" class="col-md-3 control-label">Contact</label>  
+<div class="col-md-9">  
+   @Html.TextBoxFor(x => x.Contact, new { @class = "form-control", placeholder = "Contact" })  
+   @Html.ValidationMessageFor(x => x.Contact, "Please enter Password", new { @class = "text-   danger", style = "   display:none" })  
+</div>  
+</div>  
+<div class="form-group">  
+   <span id="spnMessage" class="text-danger">@TempData["Error!!!"]</span>  
+   <span id="spnMessage" class="text-success">@TempData["Success---"]</span>  
+   <br />  
+<!-- Button -->  
+<div class="col-md-offset-3 col-md-9">  
+   <button id="btn-signup" type="submit"  class="btn btn-info"><i class="icon-hand-right"></i> Sign Up</button>  
+   <span style="margin-left:8px;"></span>  
+</div>  
+</div>  
+}  
+
+<script src="~/js/registration.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $("p:odd").css("background": "#eee")
+    });
+    </script>
+
+
+    @section Validation{
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        
+    }

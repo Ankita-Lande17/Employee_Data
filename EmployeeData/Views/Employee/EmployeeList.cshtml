@@ -1,0 +1,13 @@
+﻿@model ModelView
+
+<b> Employee List </b>
+<br/>
+<div class="row">
+    <my-first-tag-helper name="Test" desc="This is for testing purpose">
+
+    </my-first-tag-helper>
+</div>
+<div class="container">
+@Html.Partial("_Employee",Model.Employees)
+
+</div>
